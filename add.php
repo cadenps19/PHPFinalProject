@@ -1,3 +1,9 @@
+<!-- 
+Name: Caden Sanders
+Assignment: PHP Final Project
+Class: CIS-239
+Date: 12/14/2023
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
