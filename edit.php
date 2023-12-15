@@ -1,3 +1,10 @@
+<!--
+Name: Caden Sanders
+Assignment: PHP Final Project
+Class: CIS-239
+Date: 12/14/2023
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,30 +15,34 @@
 <body>
 
 <?php
+//include statement
 include "db.php";
 include "auth.php";
 
-
+//check if POST request
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    
+        //global var call
         global $db;
-
+        //set up sql statement
         $sql = "UPDATE `apidata` SET `CelebFName` = :CelebFName, `CelebLName` = :CelebLName, `CelebFact` = :CelebFact WHERE `CelebId` = :CelebId";
 
 
-
+            //prepare statement
             $stmt = $db->prepare($sql);
 
+            //sanitize post values
             $stmt->bindValue(':CelebFName', filter_input(INPUT_POST, 'CelebFName', FILTER_SANITIZE_SPECIAL_CHARS));
             $stmt->bindValue(':CelebLName', filter_input(INPUT_POST, 'CelebLName', FILTER_SANITIZE_SPECIAL_CHARS));
             $stmt->bindValue(':CelebFact', filter_input(INPUT_POST, 'CelebFact', FILTER_SANITIZE_SPECIAL_CHARS));
             $stmt->bindValue(':CelebId', filter_input(INPUT_POST, 'CelebId', FILTER_SANITIZE_SPECIAL_CHARS));
 
+            //execute statement
             $stmt->execute();
             echo("Data has been edited");
 
+            //set up redirect
             header("Location: http://localhost/CIS-239/FinalProject/select.php");
-
+            //exit and redirect to select.php
             exit();
     
         

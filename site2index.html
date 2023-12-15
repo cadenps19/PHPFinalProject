@@ -1,3 +1,10 @@
+<!--
+Name: Caden Sanders
+Assignment: PHP Final Project
+Class: CIS-239
+Date: 12/14/2023
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,20 +20,24 @@
 
     <script>
         //import axios from 'axios';
+        //create function getApiData() which is loaded using above onload on body tag
         function getApiData(){
+            //call the api
         axios.get("http://localhost/CIS-239/FinalProject/api.php?ApiKey=81bf938bab7f1b5410349fe69ed496b2")//api url
-            .then(function (response){
+            .then(function (response){//then pass in response
                 const celebs = response.data;
+                //create list
                 let html = '<ul>';
-                    
+                    //foreach item in response.data or celebs make the list item
                 response.data.forEach(function (celeb) {
                     html += `<li> ${celeb.CelebFName} ${celeb.CelebLName}: ${celeb.CelebFact}</li>`;
                 });
-
+                //close list
                 html += '</ul>';
+                //display list in data-container div
                 document.getElementById('data-container').innerHTML = html;
             })
-            .catch(function (error) {
+            .catch(function (error) {//error handling
                 console.log(error);
                 document.getElementById('data-container').innerHTML = "API Key Not Correct";
             });

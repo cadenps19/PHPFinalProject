@@ -1,3 +1,9 @@
+<!--
+Name: Caden Sanders
+Assignment: PHP Final Project
+Class: CIS-239
+Date: 12/14/2023
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,14 +13,17 @@
 </head>
 <body>
         <?php
+        //set up include
         include "db.php";
+        //call global var
         global $db;
 
-
+        //function to create random api key
         function generateApiKey(){
             return bin2hex(random_bytes(16));
         }
 
+        //if posted email from form
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Retrieve email from the form
             $email = $_POST['Email'];

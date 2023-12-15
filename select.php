@@ -1,3 +1,10 @@
+<!--
+Name: Caden Sanders
+Assignment: PHP Final Project
+Class: CIS-239
+Date: 12/14/2023
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,15 +17,21 @@
 
 
     <?php
+    //set up includes
     include "db.php";
+    //call global var
     global $db;
 
+
+        //set up sql statement
         $sql = "SELECT * FROM apidata";
 
-
+        //prepare sql statement
         $stmt = $db->prepare($sql);
 
+        //execute the query
         $stmt->execute();
+        //fetch all data returned
         $qry = $stmt->fetchAll();
 ?>
         <table>
@@ -35,7 +48,8 @@
                 <tbody>
 
 <?php
-
+        //for each returned data, add the array item into the prepared table to display it
+        //also displays anchor tags with page calls for edit and delete
         foreach($qry as $celeb){
             echo "<tr>";
             echo "<td>" . "<a href='edit.php?CelebId=$celeb[0]'>Edit</a>" . "</td>";
